@@ -1,5 +1,6 @@
 # fastapi-demo
 
+
 ## greenlet在M1芯片下不兼容问题
 
 下载greenlet源码编译安装
@@ -24,6 +25,7 @@ poetry install
 ## frontend中react版本问题
 
 删除yarn.lock，修改package.json为如下
+
 ```json
 {
   "name": "frontend",
@@ -99,3 +101,23 @@ poetry install
 
 安装EnvFile插件，https://plugins.jetbrains.com/plugin/7861-envfile
 
+
+## 本地调试
+
+### backend
+
+idea中debug运行`backend/src/main.py`，使用EnvFile插件配置`.env`文件，注意`.env`文件中需要根据实际情况修改，特别注意默认生成的postgres配置使用的是docker中的容器名，本地调试需要使用127.0.0.1替换，否则会报错，示例如下：
+
+```text
+POSTGRES_PASSWORD=KVXKmveZeeDCbmyDTcriVqpEKmvBLVJA
+POSTGRES_DB=app
+DATABASE_URL=postgresql://postgres:KVXKmveZeeDCbmyDTcriVqpEKmvBLVJA@127.0.0.1/app
+TEST_DATABASE_URL=postgresql://postgres:KVXKmveZeeDCbmyDTcriVqpEKmvBLVJA@127.0.0.1/apptest
+SECRET_KEY=mXpODjGXugTXwWFksAYadOQyTUkJHTtX
+
+BACKEND_CORS_ORIGINS='["http://localhost:3000","http://127.0.0.1:3000"]'
+```
+
+### frontend
+
+在Terminal中运行`yarn start`
