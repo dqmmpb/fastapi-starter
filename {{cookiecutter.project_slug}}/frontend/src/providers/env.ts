@@ -2,7 +2,7 @@ import { AuthApi, Configuration, UsersApi } from "../generated";
 
 const readApiBaseFromEnv = (): string => {
   // Get API base URL from env
-  // Priority is given to same host in the browser when environemnt is production
+  // Priority is given to same host in the browser when environment is production
   if (
     process.env.NODE_ENV === "production" &&
     !document.location.host.startsWith("localhost")
